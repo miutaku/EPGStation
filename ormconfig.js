@@ -14,6 +14,13 @@ const subscriber = path.join(distDBBasePath, 'subscribers', '**', '*.js');
 
 const migrations = [path.join(distDBBasePath, 'migrations', config.dbtype, '**', '*.js')];
 
+// MySQL SSL configuration
+const sslConfig = config.mysql.ssl ? {
+    ca: fs.readFileSync(config.mysql.ssl.ca, 'utf-8'),
+    cert: fs.readFileSync(config.mysql.ssl.cert, 'utf-8'),
+    key: fs.readFileSync(config.mysql.ssl.key, 'utf-8')
+} : {};
+
 // database の種類に応じた設定
 let ormConfig;
 switch (config.dbtype) {
@@ -46,6 +53,8 @@ switch (config.dbtype) {
             subscribers: [subscriber],
             migrationsRun: false,
             migrations: migrations,
+            ssl: sslConfig,
+            authenticationPlugins: config.mysql.authenticationPlugins,
         });
         break;
 
