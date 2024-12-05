@@ -56,6 +56,12 @@ export default class DBOperator implements IDBOperator {
                 migrations: migrations,
             });
         } else if (this.config.dbtype === 'mysql' && typeof this.config.mysql !== 'undefined') {
+            const sslOptions = this.config.mysql.ssl ? {
+                ca: this.config.mysql.ssl.ca, // Path to the CA cert
+                cert: this.config.mysql.ssl.cert, // Path to the client cert
+                key: this.config.mysql.ssl.key,   // Path to the client key
+            } : undefined;
+    
             connection = new DataSource({
                 type: 'mysql',
                 host: this.config.mysql.host,
@@ -71,6 +77,8 @@ export default class DBOperator implements IDBOperator {
                 subscribers: [subscriber],
                 migrationsRun: true,
                 migrations: migrations,
+                ssl: sslOptions,
+                authenticationPlugins: this.config.mysql.authenticationPlugins,
             });
         } else {
             throw new Error('DBTypeError');

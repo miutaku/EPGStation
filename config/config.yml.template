@@ -15,6 +15,12 @@ dbtype: sqlite
 #     password: epgstation
 #     database: epgstation
 #     charset: utf8mb4
+#     ssl: 
+#       ca: "/path/to/ca-cert.pem"
+#       cert: "/path/to/client-cert.pem"
+#       key: "/path/to/client-key.pem"
+#     authenticationPlugins: caching_sha2_password # MySQL
+#     authenticationPlugins: mysql_native_password # MariaDB
 
 # 囲み文字を置換するか
 needToReplaceEnclosingCharacters: true
