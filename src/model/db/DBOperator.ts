@@ -78,7 +78,6 @@ export default class DBOperator implements IDBOperator {
                 migrationsRun: true,
                 migrations: migrations,
                 ssl: sslOptions,
-                authenticationPlugins: this.config.mysql.authenticationPlugins,
             });
         } else {
             throw new Error('DBTypeError');

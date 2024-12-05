@@ -20,7 +20,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ghcr.io/${{ github.actor }}/annict-subscription-scraper
+          images: ghcr.io/${{ github.actor }}/epgstation
           tags: |
             type=raw,value=latest
             type=sha,prefix=,suffix=,format=short
@@ -28,6 +28,6 @@ jobs:
       - name: Build container image
         uses: docker/build-push-action@v5
         with:
-          file: ./Dockerfile
+          file: ./Dockerfile.debian
           push: false
           platforms: linux/amd64,linux/arm64

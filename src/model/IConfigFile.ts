@@ -61,6 +61,8 @@ export default interface IConfigFile {
         regexp?: boolean;
     };
     mysql?: {
+        ssl: any;
+        authenticationPlugins: any;
         host: string;
         user: string;
         port: number;
