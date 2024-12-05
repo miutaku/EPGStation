@@ -33,7 +33,7 @@ jobs:
       - name: Build and push container image
         uses: docker/build-push-action@v5
         with:
-          file: ./Dockerfile
+          file: ./Dockerfile.debian
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           platforms: linux/amd64,linux/arm64
