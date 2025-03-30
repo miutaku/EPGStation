@@ -41,21 +41,3 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           platforms: linux/amd64,linux/arm64
-
-      - name: create meta alpine
-        id: meta
-        uses: docker/metadata-action@v5
-        with:
-          images: ghcr.io/${{ github.actor }}/epgstation_alpine
-          tags: |
-            type=raw,value=latest
-            type=sha,prefix=,suffix=,format=short
-
-      - name: Build and push alpine container image
-        uses: docker/build-push-action@v5
-        with:
-          file: ./Dockerfile.alpine
-          push: true
-          tags: ${{ steps.meta.outputs.tags }}
-          platforms: linux/amd64,linux/arm64
-    
